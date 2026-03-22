@@ -53,7 +53,7 @@ def parse(name, text, config):
             elif prop_name == "gender":
                 current["gender"] = value 
             elif prop_name == "pos":
-                current["pos"] = value
+                LISTadd(current, "pos", value)
             elif prop_name == "meaning":
                 LISTadd(current, "meaning", value)
             elif prop_name == "plural":
