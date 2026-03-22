@@ -32,6 +32,6 @@
         "!": "antonym",
         "+": "plural",
         "?": "meaning",
-        "*": "etymology",
+        "*": "etymology"
     }
 }
