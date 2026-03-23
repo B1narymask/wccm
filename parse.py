@@ -5,13 +5,20 @@ import sys
 x = sys.argv[1]
 
 def ipa_replace(text, config):
-
     result = ""
-
-    for char in text: 
-        if char in config:
-            result+=f"{config[char]}"
-        else: result += char
+    i = 0
+    keys = sorted(config.keys(), key=len, reverse=True)
+    while i < len(text):
+        matched = False 
+        for k in keys: 
+            if text.startswith(k, i): 
+                result += config[k]
+                i += len(k)
+                matched = True
+                break 
+        if not matched:
+            result += text[i] 
+            i += 1
     return result
 
 def LISTadd(entry, key, val):
@@ -44,6 +51,9 @@ def parse(name, text, config):
             value = line[1:].strip()
             prop_name = props[symbol]
             
+            if current is None:
+                current = {}
+
             if prop_name == "ipa":
                 current["ipa_raw"] = value
                 current["ipa"] = ipa_replace(value, IPA) # IPA mapping thing 
@@ -90,6 +100,16 @@ def parse(name, text, config):
 
                 if not conjugation or not form:
                     raise ValueError(f"Invalid conjugation data: {value}")
+            
+            # special case 3: custom properties
+            elif symbol == "@": 
+                custom, val = value.split(":", 1)
+                custom = custom.strip()
+                val = val.strip()
+
+                if "custom" not in current: 
+                    current["custom"] = {}
+                current["custom"][custom] = val
         else:
             # No property symbol found -> New word
             if current:  
@@ -101,15 +121,12 @@ def parse(name, text, config):
 
     return entries
 
-    if current: 
-        entries.append(current)
-
-    return entries
-
 if __name__ == '__main__':
     entries = ""
+    data = ""
+    config = config_load()
     with open(x, "r") as f: 
         data = f.read()
-    config = config_load()
-    entries = parse(data, config)
+    #config = config_load()
+    entries = parse(name="main.wccm", text=data, config=config_load())
     save(entries)
