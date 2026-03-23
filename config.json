@@ -34,6 +34,18 @@
         "?": "meaning",
         "*": "etymology",
         ";": "case",
-        "|": "conjugation"
+        "|": "conjugations",
+        "@": "custom"
+    },
+    "inv":  {
+        ".":  "consonant",
+        ",": "vowel",
+        "^": "tone"
+    },
+    "prefs": {
+        "output": {
+            "defaultFileName": "lexicon",
+            "defaultFormat": ".txt"
+        }
     }
 }
