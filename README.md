@@ -17,6 +17,7 @@ $agˈna
 ```
 
 Turns into this:
+```
 Agná
  \[agˈna] bird, plural: ágnaya
 Gender: Masculine
@@ -24,7 +25,7 @@ POS: Noun
 Semantic field: animals
 Cases:
   gen: ágnand
-
+```
 ## Installation
 
 1. install Python 3.6 or newer from [python.org](https://python.org)
@@ -60,14 +61,14 @@ WCCM uses symbols to represent different properties. Their order is irrelevant, 
 | `%`          | Part of speech        | **%noun**                  |
 | `*`          | Etymology             | **\*from 'kaltnaen' **     |
 | `\|` and `/` | Conjugations          | **\|3rd sg present /does** |
-| `@` and `:`  | Custom                | **@class :animal**         |
+| `@` and `:`  | Custom                | **@class :animte**         |
 ## Inventory
 (Inventory-related information goes in `.cmi` files).
 
 | Symbol | Field     | Example      |
 | ------ | --------- | ------------ |
-| `.`    | consonant | **.TH**      |
-| `,`    | vowel     | **.3**       |
+| `.`    | consonant | **.tH**      |
+| `,`    | vowel     | **,3**       |
 | `^`    | Tone      | **\^rising** |
 
 Don't like this set of symbols? That's completely fine! You can edit them anytime by going into `config.json`.
