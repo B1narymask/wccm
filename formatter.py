@@ -17,14 +17,14 @@ def Format(entry):
     if "gender" in entry:
         text += f'Gender: {entry["gender"]}\n'
 
-    if "synonyms" in entry: 
+    if "synonym" in entry: 
         text += "Synonyms:"
-        for syn in entry["synonyms"].items():
+        for syn in entry["synonym"].items():
             text += f"\n  - {syn}"
     
-    if "antonyms" in entry: 
+    if "antonym" in entry: 
         text += "Antonyms:"
-        for ant in entry["antonyms"].items():
+        for ant in entry["antonym"].items():
             text += f"\n  - {ant}"
 
     if "pos" in entry:
