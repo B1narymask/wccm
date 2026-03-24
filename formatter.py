@@ -4,13 +4,18 @@ def Format(entry):
     text = f'{entry["word"]}'
 
     if "ipa" in entry:
-        text += f' [{entry["ipa"]}]'
+        text += f' [{entry["ipa"]}]\n'
 
     if "meaning" in entry:
-        text += f': "{entry["meaning"]}"'
+        if len(entry["meaning"]) >= 2:
+            text+= "Meanings:\n"
+            for m in entry["meaning"]:
+                text += f'   - {m}\n'
+        else:
+            text+=f"Meaning: {entry["meaning"][0]}\n"
 
     if "plural" in entry:
-        text += f', plural: "{entry["plural"]}"'
+        text += f'plural: "{entry["plural"]}"'
 
     text += '\n'
 
@@ -18,17 +23,24 @@ def Format(entry):
         text += f'Gender: {entry["gender"]}\n'
 
     if "synonym" in entry: 
-        text += "Synonyms:"
-        for syn in entry["synonym"].items():
-            text += f"\n  - {syn}"
+        text += "Synonyms: \n"
+        for syn in entry["synonym"]:
+            text += f"    - {syn}\n"
     
     if "antonym" in entry: 
-        text += "Antonyms:"
-        for ant in entry["antonym"].items():
-            text += f"\n  - {ant}"
+        text += "Antonyms: \n"
+        for ant in entry["antonym"]:
+            text += f"    - {ant}\n"
 
     if "pos" in entry:
-        text += f'P.O.S: {entry["pos"]}\n'
+        text += f'Part(s) Of Speech:'
+        if len(entry["pos"]) == 2: 
+            text+=f" {entry["pos"][0]}, {entry["pos"][1]}"
+        elif len(entry["pos"]) == 1:
+            text+=f" {entry["pos"]}"
+        else:
+            for pos in entry["pos"]:
+                text+=f" {pos},"
 
     if "field" in entry:
         text += f'Semantic field: {entry["field"]}\n'
@@ -36,12 +48,12 @@ def Format(entry):
     if "cases" in entry:
         text += 'Cases:\n'
         for case, form in entry["cases"].items():
-            text += f'  {case}: {form}\n'
+            text += f'    - {case}: {form}\n'
 
     if "conjugations" in entry:
         text += 'Conjugations:\n'
         for conjugation, form in entry["conjugations"].items():
-            text+=f"  {conjugation}: {form}\n"
+            text+=f"    - {conjugation}: {form}\n"
 
     if "custom" in entry: 
         for custom, prop in entry["custom"].items():
@@ -54,48 +66,61 @@ def markdown(entry):
     text = f'{entry["word"]}'
 
     if "ipa" in entry:
-        text += f'*\\[{entry["ipa"]}]*'
-
+        text += f' *\\[{entry["ipa"]}]*'
+    text += '\n'
     if "meaning" in entry:
-        text += f': "{entry["meaning"]}"'
+        if len(entry["meaning"]) >= 2:
+            text+= "**Meanings:**\n"
+            for m in entry["meaning"]:
+                text += f'   - *{m}*\n'
+        else:
+            text+=f"**Meaning:** {entry["meaning"][0]}"
 
     if "plural" in entry:
-        text += f', plural: "{entry["plural"]}"'
+        text += f'plural: "{entry["plural"]}"'
 
     text += '\n'
 
     if "gender" in entry:
         text += f'**Gender:** {entry["gender"]}\n'
 
-    if "synonyms" in entry: 
-        text += "***Synonyms:***"
-        for syn in entry["synonyms"].items():
-            text += f"\n  - *{syn}*"
+    if "synonym" in entry: 
+        text += "**Synonyms:** \n"
+        for syn in entry["synonym"]:
+            text += f"    - *{syn}*\n"
     
-    if "antonyms" in entry: 
-        text += "***Antonyms:***"
-        for ant in entry["antonyms"].items():
-            text += f"\n  - *{ant}*"
+    if "antonym" in entry: 
+        text += "**Antonyms:** \n"
+        for ant in entry["antonym"]:
+            text += f"    - *{ant}*\n"
     
     if "pos" in entry:
-        text += f'**Part Of Speech:** {entry["pos"]}\n'
+        text += f'**Part(s) Of Speech:**'
+        if len(entry["pos"]) == 2: 
+            text+=f" {entry["pos"][0]}, {entry["pos"][1]}"
+        elif len(entry["pos"]) == 1:
+            text+=f" {entry["pos"]}"
+        else:
+            for pos in entry["pos"]:
+                text+=f" {pos},"
+        text+="\n"
 
     if "field" in entry:
-        text += f'**Semantic field:** {entry["field"]}\n'
+        text += f'**Semantic field:** \\{entry["field"]}\n'
 
     if "cases" in entry:
         text += '**Cases:**\n'
         for case, form in entry["cases"].items():
-            text += f'  - **{case}:** {form}\n'
+            text += f'    - **{case}:** {form}\n'
 
     if "conjugations" in entry:
         text += '**Conjugations:**\n'
         for conjugation, form in entry["conjugations"].items():
-            text+=f"  - **{conjugation}:** {form}\n"
+            text+=f"    - **{conjugation}:** {form}\n"
 
     if "custom" in entry: 
         for custom, prop in entry["custom"].items():
-            text+=f"- **{custom}:** {prop}"
+            text+=f"-   **{custom}:** {prop}"
     # print("Done! formatting complete!")
     return text
 

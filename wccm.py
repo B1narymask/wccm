@@ -56,7 +56,7 @@ if cm:
     # saves data to master.json for... reasons...?? Idk man this is already here and I'm too lazy to change it
     save(entries)
 
-    print(f"Done! Created {arg} with {len(entries)} entries.")
+    print(f"Done! Created {output} with {len(entries)} entries.")
 else: 
     inv = parse_inv(text, config)
     formatted = inv_f(inv)
@@ -65,3 +65,4 @@ else:
 
     with open(output, "w", encoding="utf-8") as f:
         f.write(formatted)
+    print(f"Done! created {output}.")
