@@ -1,0 +1,14 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "wccm"
+version = "0.2.3"
+description = "Compact command-line conlang manager"
+authors = [{ name = "Wernasho" }]
+readme = "README.md"
+requires-python = ">=3.8"
+
+[project.scripts]
+wccm = "wccm:main" 
