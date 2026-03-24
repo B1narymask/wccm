@@ -1,5 +1,3 @@
-import json
-from storage import save, config_load
 import sys
 
 x = sys.argv[1]
@@ -120,13 +118,3 @@ def parse(name, text, config):
         entries.append(current)
 
     return entries
-
-if __name__ == '__main__':
-    entries = ""
-    data = ""
-    config = config_load()
-    with open(x, "r") as f: 
-        data = f.read()
-    #config = config_load()
-    entries = parse(name="main.wccm", text=data, config=config_load())
-    save(entries)
