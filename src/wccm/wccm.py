@@ -1,8 +1,8 @@
-from parse import parse
-from formatter import Format, markdown, inv_f
+from .parse import parse
+from .formatter import Format, markdown, inv_f
 import sys 
-from storage import save, config_load
-from infoParse import parse_inv
+from .storage import save, config_load
+from .infoParse import parse_inv
 
 def main():
     
@@ -55,7 +55,7 @@ def main():
             with open(output, "w", encoding="utf-8") as f: 
                 f.write(formatted_text)
         # saves data to master.json for... reasons...?? Idk man this is already here and I'm too lazy to change it
-        save(entries)
+        #save(entries)
 
         print(f"Done! Created {output} with {len(entries)} entries.")
     else: 

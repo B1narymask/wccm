@@ -1,4 +1,4 @@
-from storage import load
+from .storage import load
 
 def Format(entry):
     text = f'{entry["word"]}'

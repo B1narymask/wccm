@@ -1,5 +1,5 @@
-from parse import  ipa_replace
-from storage import config_load
+from .parse import  ipa_replace
+from .storage import config_load
 
 config = config_load() # loads configurations from config.json
 
