@@ -45,7 +45,7 @@ if cm:
             formatted_text += markdown(entry) + "\n\n" + "----" + "\n"
 
     if not output:
-        with open("lexicon.txt", "w", encoding="utf-8") as f:
+        with open(f"{config["prefs"]["output"]["defaultFileName"]}.{config["prefs"]["output"]["defaultFormat"]}", "w", encoding="utf-8") as f:
             f.write(formatted_text)
     elif output.endswith(".txt"):
         with open(output, "w", encoding="utf-8") as f:
@@ -56,7 +56,7 @@ if cm:
     # saves data to master.json for... reasons...?? Idk man this is already here and I'm too lazy to change it
     save(entries)
 
-    print(f"Done! Created lexicon.txt with {len(entries)} entries.")
+    print(f"Done! Created {arg} with {len(entries)} entries.")
 else: 
     inv = parse_inv(text, config)
     formatted = inv_f(inv)

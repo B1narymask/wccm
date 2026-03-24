@@ -59,7 +59,7 @@ def parse(name, text, config):
                 current["ipa"] = ipa_replace(value, IPA) # IPA mapping thing 
 
             elif prop_name == "field":
-                current["field"] = value
+                LISTadd(current, "field", value)
             elif prop_name == "gender":
                 current["gender"] = value 
             elif prop_name == "pos":

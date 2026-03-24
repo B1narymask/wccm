@@ -11,7 +11,7 @@ def parse_inv(text, config):
     ipa  = config["ipa"]
 
     lines = text.splitlines()
-    inventory = {}  # one dictionary for everything
+    inventory = {}  
     inventory["romanization"] = {}
     for line in lines:
         line = line.strip()
@@ -40,11 +40,10 @@ def parse_inv(text, config):
                 ipa_symbol = ipa_symbol.strip()
                 ipa_symbol = ipa_replace(ipa_symbol, ipa)
                 roman = roman.strip()
-                #print(f"{roman} \n {ipa_symbol}")
                 
                 if ipa_symbol and roman: 
                     inventory["romanization"][roman] = ipa_symbol 
-                    #print(f"{roman} \n {ipa_symbol}")
+
             except ValueError: 
                 raise ValueError(f"Invalid romanization data: {line}")
 
@@ -52,8 +51,9 @@ def parse_inv(text, config):
     print("Done! parse complete!")
     return inventory
     
-
+"""
 text = ""
 with open(file, "r") as f:
     text = f.read()
 parse_inv(text,config)
+"""

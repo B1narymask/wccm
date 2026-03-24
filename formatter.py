@@ -17,6 +17,16 @@ def Format(entry):
     if "gender" in entry:
         text += f'Gender: {entry["gender"]}\n'
 
+    if "synonyms" in entry: 
+        text += "Synonyms:"
+        for syn in entry["synonyms"].items():
+            text += f"\n  - {syn}"
+    
+    if "antonyms" in entry: 
+        text += "Antonyms:"
+        for ant in entry["antonyms"].items():
+            text += f"\n  - {ant}"
+
     if "pos" in entry:
         text += f'P.O.S: {entry["pos"]}\n'
 
@@ -44,7 +54,7 @@ def markdown(entry):
     text = f'{entry["word"]}'
 
     if "ipa" in entry:
-        text += f'*[{entry["ipa"]}]*'
+        text += f'*\\[{entry["ipa"]}]*'
 
     if "meaning" in entry:
         text += f': "{entry["meaning"]}"'
@@ -57,8 +67,18 @@ def markdown(entry):
     if "gender" in entry:
         text += f'**Gender:** {entry["gender"]}\n'
 
+    if "synonyms" in entry: 
+        text += "***Synonyms:***"
+        for syn in entry["synonyms"].items():
+            text += f"\n  - *{syn}*"
+    
+    if "antonyms" in entry: 
+        text += "***Antonyms:***"
+        for ant in entry["antonyms"].items():
+            text += f"\n  - *{ant}*"
+    
     if "pos" in entry:
-        text += f'**P.O.S:** {entry["pos"]}\n'
+        text += f'**Part Of Speech:** {entry["pos"]}\n'
 
     if "field" in entry:
         text += f'**Semantic field:** {entry["field"]}\n'
@@ -76,7 +96,7 @@ def markdown(entry):
     if "custom" in entry: 
         for custom, prop in entry["custom"].items():
             text+=f"- **{custom}:** {prop}"
-    print("Done! formatting complete!")
+    # print("Done! formatting complete!")
     return text
 
 def inv_f(dic):
@@ -100,7 +120,7 @@ def inv_f(dic):
         text += "Romanization:\n"
         for ipa_symbol, roman in dic["romanization"].items():
             text += f"  - {ipa_symbol} → {roman}\n"
-    print("Done! formatting complete!")
+    # print("Done! formatting complete!")
     return text
 
 if __name__ == '__main__':
