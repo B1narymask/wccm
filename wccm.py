@@ -14,7 +14,7 @@ else:
     output = f"{config["prefs"]["output"]["defaultFileName"]}.{config["prefs"]["output"]["defaultFormat"]}"
 
 text = ""
-print(output)
+
 if not arg:
     print("Usage: py wccm.py file.wccm output.txt or py wccm.py file.cmi output.txt")
     exit()
