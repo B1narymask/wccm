@@ -5,5 +5,5 @@ src/wccm.egg-info
 *.txt
 *.wccm
 *.cmi
-src/wccm/config.json
+src/wccm/*.json
 *.pref

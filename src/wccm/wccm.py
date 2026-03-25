@@ -9,17 +9,17 @@ def main():
     config = config_load()
     arg = sys.argv[1]
     #output = ""
-    if len(sys.argv) >= 2:
+    if len(sys.argv) >= 3:
         output = sys.argv[2]
    
     else:  
         output = f"{config["prefs"]["output"]["defaultFileName"]}.{config["prefs"]["output"]["defaultFormat"]}"
-    print(f"arg:{arg}")
-    print(f"output:{output}")
+    #print(f"arg:{arg}")
+    #print(f"output:{output}")
     text = ""
 
     if not arg:
-        print("Usage: py wccm.py file.wccm output.txt or py wccm.py file.cmi output.txt")
+        print("Usage: wccm <file> [output]")
         exit()
 
     elif not (arg.endswith(".wccm") or arg.endswith(".cmi") or arg.endswith(".pref")):

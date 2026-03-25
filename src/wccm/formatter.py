@@ -147,7 +147,7 @@ def inv_f(dic):
         text += "Romanization:\n"
         for ipa_symbol, roman in dic["romanization"].items():
             text += f"  - {ipa_symbol} → {roman}\n"
-    # print("Done! formatting complete!")
+    print("Done! formatting complete!")
     return text
 
 if __name__ == '__main__':
