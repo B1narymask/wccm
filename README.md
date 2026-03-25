@@ -33,12 +33,16 @@ Cases:
 3. no additional packages are needed, uses only python standard library!
 
 # Usage:
-Open up your console/terminal inside the wccm folder, and run this command:
-```bash
-py wccm.py file.wccm
+Install it:
+```
+pip install wccm
+```
+Then you can just use it like this:
+```
+wccm file.wccm 
 ```
 
-Outputs to `Lexicon.txt`
+Outputs to `Lexicon.txt` by default.
 
 # Syntax
 
@@ -47,29 +51,31 @@ WCCM uses symbols to represent different properties. Their order is irrelevant, 
 ## Lexicon
 (Lexicon-related syntax goes in `.wccm` files).
 
-| Symbol       | Field                 | Example                    |
-| ------------ | --------------------- | -------------------------- |
-| (None)       | Word                  | **Kat**                    |
-| `$`          | IPA                   | **$kæt**                   |
-| `#`          | Semantic field        | **\#animal**               |
-| `~`          | Gender                | **~M**                     |
-| `?`          | Translation           | **?Cat**                   |
-| `+`          | Plural form(s)        | **+Cats**                  |
-| `;` and `:`  | Case name / case form | **;gen :cat's**            |
-| `=`          | Synonym(s)            | **=feline**                |
-| `!`          | Antonym(s)            | **!dog**                   |
-| `%`          | Part of speech        | **%noun**                  |
-| `*`          | Etymology             | **\*from 'kaltnaen' **     |
-| `\|` and `/` | Conjugations          | **\|3rd sg present /does** |
-| `@` and `:`  | Custom                | **@class :animte**         |
+| Symbol       | Field                 | Example                       |
+| ------------ | --------------------- | ----------------------------- |
+| (None)       | Word                  | **Kat**                       |
+| `$`          | IPA                   | **$kæt**                      |
+| `#`          | Semantic field        | **\#animal**                  |
+| `~`          | Gender                | **~M**                        |
+| `?`          | Translation           | **?Cat**                      |
+| `+`          | Plural form(s)        | **+Cats**                     |
+| `;` and `:`  | Case name / case form | **;gen :cat's**               |
+| `=`          | Synonym(s)            | **=feline**                   |
+| `!`          | Antonym(s)            | **!dog**                      |
+| `%`          | Part of speech        | **%noun**                     |
+| `*`          | Etymology             | **\*from 'kaltnaen' **        |
+| `\|` and `/` | Conjugations          | **\|3rd sg present /does**    |
+| `@` and `:`  | Custom                | **@class :animte**            |
+| `_`          | Comment               | **_ what do I even put here** |
 ## Inventory
 (Inventory-related information goes in `.cmi` files).
 
-| Symbol | Field     | Example      |
-| ------ | --------- | ------------ |
-| `.`    | consonant | **.tH**      |
-| `,`    | vowel     | **,3**       |
-| `^`    | Tone      | **\^rising** |
+| Symbol | Field        | Example      |
+| ------ | ------------ | ------------ |
+| `.`    | consonant    | **.tH**      |
+| `,`    | vowel        | **,3**       |
+| `^`    | Tone         | **\^rising** |
+| `-`    | romanization | **-ñ :ny**   |
 
 Don't like this set of symbols? That's completely fine! You can edit them anytime by going into `config.json`.
 
@@ -125,7 +131,8 @@ I know that typing IPA symbols can be tedious if you don't have the tools, which
     "inv":  {
         ".":  "consonant",
         ",": "vowel",
-        "^": "tone"
+        "^": "tone",
+        "-": "romanization"
     },
     "prefs": {
         "output": {
