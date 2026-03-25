@@ -1,7 +1,7 @@
 import json 
 import importlib.resources 
 def save(data, file="lexicon.json"):
-	with importlib.resources.open_text("wccm", file or "lexicon.json") as f:
+	with open(file or "lexicon.json", "w", encoding="utf-8") as f:
 		json.dump(data, f, indent=2, ensure_ascii=False)
 def load():
 	with importlib.resources.open_text("wccm", "lexicon.json") as f:

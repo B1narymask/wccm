@@ -3,30 +3,34 @@ from .formatter import Format, markdown, inv_f
 import sys 
 from .storage import save, config_load
 from .infoParse import parse_inv
-
+from .config import set_conf
 def main():
     
     config = config_load()
     arg = sys.argv[1]
+    #output = ""
     if len(sys.argv) >= 2:
         output = sys.argv[2]
-
+   
     else:  
         output = f"{config["prefs"]["output"]["defaultFileName"]}.{config["prefs"]["output"]["defaultFormat"]}"
-
+    print(f"arg:{arg}")
+    print(f"output:{output}")
     text = ""
 
     if not arg:
         print("Usage: py wccm.py file.wccm output.txt or py wccm.py file.cmi output.txt")
         exit()
 
-    elif not (arg.endswith(".wccm") or arg.endswith(".cmi")):
-        print("Please use a valid file extension. Valid extensions: \n.wccm\n.cmi")
+    elif not (arg.endswith(".wccm") or arg.endswith(".cmi") or arg.endswith(".pref")):
+        print("Please use a valid file extension. Valid extensions: \n.wccm -> Lexicon \n.cmi -> inventory\n .pref -> Preferences")
         exit()
 
     cm = False
-
+    pr = False
+    
     if arg.endswith(".wccm"): cm = True 
+    elif arg.endswith(".pref"): pr = True
 
     if not (output.endswith(".txt") or output.endswith(".md")): 
         print("Please select a valid output extension: .md or .txt")
@@ -58,6 +62,8 @@ def main():
         #save(entries)
 
         print(f"Done! Created {output} with {len(entries)} entries.")
+    elif pr: 
+        set_conf(arg, text, config)
     else: 
         inv = parse_inv(text, config)
         formatted = inv_f(inv)
