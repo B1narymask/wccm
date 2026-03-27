@@ -156,7 +156,6 @@ wccm configs.pref
 ```
 and that's it!
 
-<<<<<<< HEAD
 Here's how this works:
 
 ```
@@ -167,7 +166,6 @@ default file name set <name>
 invnetorymap set <symbol(s)> to <property>
 ```
 
-=======
 Here's the full `.pref` syntax:
 
 | Symbol | Config                                                                      |
