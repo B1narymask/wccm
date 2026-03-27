@@ -9,3 +9,4 @@ lexicon.json
 src/wccm/info.json
 *.allo
 output.md
+config.json

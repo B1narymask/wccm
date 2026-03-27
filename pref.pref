@@ -1,19 +1,6 @@
-;pref.pref
-; :J.ʝ
-; :^j.ʲ
-; :c.tʃ
-; :N.ɲ
-; :y.y
-ipamap set J to ʝ
-ipamap set ^j to ʲ
-ipamap set c to tʃ
-ipamap set N to ɲ
-
-default file name set output
-default output format set .txt
-
-inventorymap set | to romanization
-propmap set # to comment 
-propmap set .. to field 
-inventorymap set WAA to consonants
-ipamap set WAA to ʃ
+; Hi! This file is where you can edit your configurations!
+; Note:
+; "field" and "comment" can't be edited
+; why? 
+; I don't know, mate. The program just hates us. 
+; Just don't touch those and you'll be fine.

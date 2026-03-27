@@ -150,55 +150,7 @@ Same goes for the properties, although it is very important that you do **not** 
 
 As you might've guessed, you can also choose the default name and format of the output file! The name can be anything you want, and the file extension can be either `.txt` or `.md`. A `lexicon.json` file is always automatically generated, which is why `.json` isn't an option in preferences.
 
-Note: since I'm aware most conlangers aren't developers and wouldn't want to mess with the `.json`, you can now change preferences via `.pref` files. For exmple, this file:
-```
-;comment.
-:J.ʝ
-:^j.ʲ
-:c.tʃ
-:N.ɲ
-
-?defaultFileName.output
-?defaultFormat.txt
-```
-Would make `config.json` look like this:
-
-```json
-{
-    "ipa": {
-        "S": "ʃ",
-        "T": "θ",
-        "R": "ɾ",
-        "B": "β",
-        "D": "ð",
-        "N": "ŋ",
-        "^j": "ʲ",
-        "Z": "ʒ",
-        ":": "ː",
-        "'": "ˈ",
-        "N": "ɲ",
-        "W": "ʷ",
-        "H": "ʰ",
-        "A": "ɑ",
-        "E": "ə",
-        "I": "ɪ",
-        "3": "ɛ",
-        "O": "ɔ",
-        "U": "ʊ",
-        "^": "ʌ",
-        "X": "χ",
-        "J": "ʝ",
-        "c":"tʃ"
-    },
-    "prefs": {
-        "output": {
-            "defaultFileName": "output",
-            "defaultFormat": "txt"
-        }
-    }
-}
-```
-(skipped `"inv"` and `"props"` since they remain unchanged).
+Note: since I'm aware most conlangers aren't developers and wouldn't want to mess with the `.json`, you can now change preferences via `.pref` files. 
 
 All you have to do to change your configs is write your file, save it as `.pref` and just use it as an argument:
 ```
@@ -206,21 +158,21 @@ wccm configs.pref
 ```
 and that's it!
 
-Here's the full `.pref` syntax:
+Here's how this works:
 
-| Symbol | Config                                                                      |
-| ------ | --------------------------------------------------------------------------- |
-| `;`    | none; comment                                                               |
-| `:`    | IPA mapping                                                                 |
-| `?`    | output preferences (default name and format of output file)                 |
-| `,`    | edit property symbols (e.g., use `??` instead of `#` for semantic field)    |
-| `/`    | inventory mapping (same as above but symbols used for inventory management) |
+```
+ipamap set <characters> to <IPA>
+propmap set <symbol(s)> to <property name>
+default output format set <file extension>
+default file name set <name>
+invnetorymap set <symbol(s)> to <property>
+```
 
-I'm aware that this can be confusing and hard to get used to, so I'm working to improve the way to manage configurations, but in the meantime you'll have to put up with that (sorry!)
 
 ## Limitations 
 
 If you ever want to remap a symbol, as said before, you're allowed (and encouraged) to do so! However, it is very important that you don't map `\` to anything. Since i don't want to confuse you with tech talk, basically, `\` is a special character and if you try to use it for mapping the configuration file is going to break.
+And, for reasons that are truly beyond my knowledge, "field" (semantic field) and "comment" properties can't be modified? I'll try to fix it later; too tired to do it right now.
 
 Other than that, you should be able to change pretty much anything!
 

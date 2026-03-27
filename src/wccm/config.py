@@ -1,14 +1,14 @@
-from .storage import save 
+from .storage import save, load
 
 def set_conf(name, text, config):
     if not name.endswith(".pref"):
         print("ERROR: Please use .pref files to edit preferences.")
         return 
     lines = text.splitlines()
-    #config["ipa"] = {}
-    #config["inv"] = {}
-    #config["prefs"]["output"] = {}
-    #config["props"] = {}
+    default = load("default.json")
+    config["ipa"] = default.get("ipa", {}).copy()
+    config["inv"] = default.get("inv", {}).copy()
+    config["props"] = default.get("props", {}).copy()
     for line in lines:
         prop = ""
         val = ""
@@ -32,32 +32,40 @@ def set_conf(name, text, config):
                 print(f"Error: 'to' keyword missing. \nline: {line}")
                 print(f"Debug: rest: {rest}, prop: {prop}")
                 continue
-            rest, val = rest.split(" to ")
+            key, val = rest.split(" to ")
             val = val.strip()
-            if rest.strip() in config["ipa"]:
-                del config["ipa"][rest.strip()]
-                config["ipa"][rest.strip()] = val
-            #config["ipa"][rest] = val 
+            keysTOremove = [k for k, v in config["ipa"].items() if v == val]
+            for k in keysTOremove:
+                del config["ipa"][k]
+            config["ipa"][key] = val
         elif prop == "inventorymap":
-            rest, val = rest.split(" to ")
+            key, val = rest.split(" to ")
             val = val.strip()
-            if val == "vowels": val = "vowel"
-            elif val == "consonants": val = "consonant"
-            if rest.strip() in config["inv"]:
-                del config["inv"][rest.strip()]
-                config["inv"][rest.strip()] = val
-            #config["inv"][rest] = val 
+            if val == "vowels": 
+                val = "vowel"
+            elif val == "consonants": 
+                val = "consonant"
+            keysTOremove = [k for k, v in config["inv"].items() if v == val]
+            for k in keysTOremove:
+                del config["inv"][k]
+            config["inv"][key] = val
         elif prop == "propmap":
-            if " to "not in line:
-                print(f"Error: 'to' keyword missing. \nline: {line}")
-            prop, rest = line.split(" set ")
-            rest, val = rest.split(" to ")
-            val = val.strip()
-            if rest.strip() in config["props"]:
-                del config["props"][rest.strip()]
-                config["props"][rest.strip()] = val
-            #config["props"][rest] = val 
+                if " to "not in line:
+                    print(f"Error: 'to' keyword missing. \nline: {line}")
+                prop, rest = line.split(" set ")
+                key, val = rest.split(" to ")
+                val = val.strip()
+                # I'm NOT putting up with this. It's 12:28 AM on a weekday, let me be.
+                if val == "field" or val == "comment":
+                    print("Error: due to technical difficulties, 'field' and 'comment' properties cannot be edited.")
+                    print("--Sorry, Wer")
+                    continue
+                keysTOremove = [k for k, v in config["props"].items() if v == val]
+                for k in keysTOremove:
+                    del config["props"][k]
+                config["props"][key] = val
+        
         else:
-            print(f"Error: in line {line} Keyword '{prop}' not recognized")
+            print(f"Error: in line {line} Keyword '{prop}' not recognized")    
     save(config, "src/wccm/config.json")
     print("Done! Preferences updated successfully.")

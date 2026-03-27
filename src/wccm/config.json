@@ -5,6 +5,8 @@
     "R": "ɾ",
     "B": "β",
     "D": "ð",
+    "N": "ŋ",
+    "J": "ʲ",
     "Z": "ʒ",
     ":": "ː",
     "'": "ˈ",
@@ -18,12 +20,11 @@
     "O": "ɔ",
     "U": "ʊ",
     "^": "ʌ",
-    "X": "χ",
-    "J": "ʝ",
-    "N": "ɲ"
+    "X": "χ"
   },
   "props": {
     "$": "ipa",
+    "#": "field",
     "%": "pos",
     "_": "comment",
     "~": "gender",
@@ -34,8 +35,7 @@
     "*": "etymology",
     ";": "case",
     "|": "conjugations",
-    "@": "custom",
-    "#": "comment"
+    "@": "custom"
   },
   "inv": {
     ".": "consonant",
@@ -45,7 +45,7 @@
   },
   "prefs": {
     "output": {
-      "defaultFileName": "output",
+      "defaultFileName": "lexicon",
       "defaultFormat": ".txt"
     }
   }
