@@ -165,23 +165,10 @@ default output format set <file extension>
 default file name set <name>
 invnetorymap set <symbol(s)> to <property>
 ```
-
-Here's the full `.pref` syntax:
-
-| Symbol | Config                                                                      |
-| ------ | --------------------------------------------------------------------------- |
-| `;`    | none; comment                                                               |
-| `:`    | IPA mapping                                                                 |
-| `?`    | output preferences (default name and format of output file)                 |
-| `,`    | edit property symbols (e.g., use `??` instead of `#` for semantic field)    |
-| `/`    | inventory mapping (same as above but symbols used for inventory management) |
-
-I'm aware that this can be confusing and hard to get used to, so I'm working to improve the way to manage configurations, but in the meantime you'll have to put up with that (sorry!)
->>>>>>> 4cb8b25e59dcdec6aa1c69413b60bf2f18279f6f
-
 ## Limitations 
 
 If you ever want to remap a symbol, as said before, you're allowed (and encouraged) to do so! However, it is very important that you don't map `\` to anything. Since i don't want to confuse you with tech talk, basically, `\` is a special character and if you try to use it for mapping the configuration file is going to break.
+
 And, for reasons that are truly beyond my knowledge, "field" (semantic field) and "comment" properties can't be modified? I'll try to fix it later; too tired to do it right now.
 
 Other than that, you should be able to change pretty much anything!
