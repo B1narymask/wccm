@@ -6,25 +6,49 @@ All you need to do is type your properties with shorthands you can customize, an
 For example, this:
 
 ```
-Agná 
-$agˈna
+Drink
+$dɹInkH
 %noun
-#animals
-?bird
-~Masculine
-+ágnaya
-;gen :ágnand
+%verb
++dirnks
+;gen :drink's
+|3rd sg present /drinks
+=beverage
+=liquid
+=sip
+=gulp
+=swallow
+!food
+!solid
+!edible
+!snack
+!meal
+?take (a liquid) into the mouth and swallow
+?a liquid that can be swallowed as refreshment or nourishment
 ```
 
 Turns into this:
 ```
-Agná
- [agˈna] bird, plural: ágnaya
-Gender: Masculine
-POS: Noun
-Semantic field: animals
-Cases:
-  gen: ágnand
+Drink [dɹɪnkʰ]
+Meanings:
+   - take (a liquid) into the mouth and swallow
+   - a liquid that can be swallowed as refreshment or nourishment
+plural: "dirnks"
+Synonyms: 
+    - beverage
+    - liquid
+    - sip
+    - gulp
+    - swallow
+Antonyms: 
+    - food
+    - solid
+    - edible
+    - snack
+    - meal
+Parts Of Speech:  noun, verb
+Conjugations:
+    - 3rd sg present: drinks
 ```
 ## Installation
 
@@ -181,8 +205,5 @@ WCCM started as just a little personal tool I developed because I'm stubborn and
 
 This is my first time actually finishing and sharing a project, so I'd genuinely *love* to hear suggestions or ideas for future versions, as well as bug reports and other stuff like that.
 Also, if you guys think that this is a bit "too technical" for the average conlanger, please let me know and I'll try my best to make it as intuitive and a little more non-coder friendly.
-<<<<<<< HEAD
+
 You can contact me pretty much any time in [**my twitter (I'm not calling it 'X')**](https://x.com/wernasho) or [**my reddit!**](https://reddit.com/user/wernasho)
-=======
-You can contact me pretty much any time in [my twitter (I'm not calling it 'X')](https://x.com/wernasho) or [my reddit!](https://reddit.com/user/wernasho)
->>>>>>> 4cb8b25e59dcdec6aa1c69413b60bf2f18279f6f
