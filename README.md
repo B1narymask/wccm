@@ -142,7 +142,7 @@ Default configurations:
         "$": "ipa",
         "#": "field",
         "%": "pos",
-        "_": "comment",
+        "//": "comment",
         "~": "gender",
         "=": "synonym",
         "!": "antonym",
@@ -162,7 +162,7 @@ Default configurations:
     "prefs": {
         "output": {
             "defaultFileName": "lexicon",
-            "defaultFormat": ".txt"
+            "defaultFormat": "txt"
         }
     }
 }
