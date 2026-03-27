@@ -150,14 +150,13 @@ Same goes for the properties, although it is very important that you do **not** 
 
 As you might've guessed, you can also choose the default name and format of the output file! The name can be anything you want, and the file extension can be either `.txt` or `.md`. A `lexicon.json` file is always automatically generated, which is why `.json` isn't an option in preferences.
 
-Note: since I'm aware most conlangers aren't developers and wouldn't want to mess with the `.json`, you can now change preferences via `.pref` files. 
-
 All you have to do to change your configs is write your file, save it as `.pref` and just use it as an argument:
 ```
 wccm configs.pref 
 ```
 and that's it!
 
+<<<<<<< HEAD
 Here's how this works:
 
 ```
@@ -168,6 +167,19 @@ default file name set <name>
 invnetorymap set <symbol(s)> to <property>
 ```
 
+=======
+Here's the full `.pref` syntax:
+
+| Symbol | Config                                                                      |
+| ------ | --------------------------------------------------------------------------- |
+| `;`    | none; comment                                                               |
+| `:`    | IPA mapping                                                                 |
+| `?`    | output preferences (default name and format of output file)                 |
+| `,`    | edit property symbols (e.g., use `??` instead of `#` for semantic field)    |
+| `/`    | inventory mapping (same as above but symbols used for inventory management) |
+
+I'm aware that this can be confusing and hard to get used to, so I'm working to improve the way to manage configurations, but in the meantime you'll have to put up with that (sorry!)
+>>>>>>> 4cb8b25e59dcdec6aa1c69413b60bf2f18279f6f
 
 ## Limitations 
 
@@ -184,4 +196,8 @@ WCCM started as just a little personal tool I developed because I'm stubborn and
 
 This is my first time actually finishing and sharing a project, so I'd genuinely *love* to hear suggestions or ideas for future versions, as well as bug reports and other stuff like that.
 Also, if you guys think that this is a bit "too technical" for the average conlanger, please let me know and I'll try my best to make it as intuitive and a little more non-coder friendly.
+<<<<<<< HEAD
 You can contact me pretty much any time in [**my twitter (I'm not calling it 'X')**](https://x.com/wernasho) or [**my reddit!**](https://reddit.com/user/wernasho)
+=======
+You can contact me pretty much any time in [my twitter (I'm not calling it 'X')](https://x.com/wernasho) or [my reddit!](https://reddit.com/user/wernasho)
+>>>>>>> 4cb8b25e59dcdec6aa1c69413b60bf2f18279f6f
