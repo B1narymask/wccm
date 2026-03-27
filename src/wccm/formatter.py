@@ -33,19 +33,28 @@ def Format(entry):
             text += f"    - {ant}\n"
 
     if "pos" in entry:
+        
         if len(entry["pos"]) == 2: 
-            text+="Parts of speech:\n"
-            text+=f" {entry["pos"][0]}, {entry["pos"][1]}\n"
+            text += f'Parts Of Speech: '
+            text+=f" {entry["pos"][0]}, {entry["pos"][1]}"
         elif len(entry["pos"]) == 1:
-            text += f'Part Of Speech:'
-            text+=f" {entry["pos"]}"
+            text += f'Part Of Speech: '
+            text+=f"{entry["pos"][0]}"
         else:
-            text+="Parts of speech:\n"
+            text += f'Parts Of Speech: |' 
             for pos in entry["pos"]:
-                text+=f" {pos}"
+                text+=f'{pos}|'     
+    text +='\n'
 
     if "field" in entry:
-        text += f'Semantic field: {entry["field"]}\n'
+        if len(entry["field"]) == 1:
+            text += f'Semantic field: {entry["field"][0]}\n'
+        elif len(entry["field"]) == 2:
+            text += f'Semantic fields: {entry["field"][0]}, {entry["field"][1]}\n'
+        else: 
+            text+=f'Semantic fields:  '
+            for i in entry["field"]:
+                text+=f'{entry["field"][i]}|'
 
     if "cases" in entry:
         text += 'Cases:\n'
@@ -64,11 +73,18 @@ def Format(entry):
     print("Done! formatting complete!")
     return text
 
+"""
+=========================================
+
+ --------------- MARKDOWN ---------------
+
+=========================================
+"""
 def markdown(entry): 
     text = f'{entry["word"]}'
 
     if "ipa" in entry:
-        text += f' *\\[{entry["ipa"]}]*'
+        text += f' *\\[{entry["ipa"]}\\]*'
     text += '\n'
     if "meaning" in entry:
         if len(entry["meaning"]) >= 2:
@@ -76,12 +92,10 @@ def markdown(entry):
             for m in entry["meaning"]:
                 text += f'   - *{m}*\n'
         else:
-            text+=f"**Meaning:** {entry["meaning"][0]}"
+            text+=f"**Meaning:** {entry["meaning"][0]}\n"
 
     if "plural" in entry:
-        text += f'plural: "{entry["plural"]}"'
-
-    text += '\n'
+        text += f'plural: "{entry["plural"]}"\n'
 
     if "gender" in entry:
         text += f'**Gender:** {entry["gender"]}\n'
@@ -97,18 +111,24 @@ def markdown(entry):
             text += f"    - *{ant}*\n"
     
     if "pos" in entry:
-        text += f'**Part(s) Of Speech:**'
+        text += f'**Part Of Speech:** '
         if len(entry["pos"]) == 2: 
             text+=f" {entry["pos"][0]}, {entry["pos"][1]}"
         elif len(entry["pos"]) == 1:
-            text+=f" {entry["pos"]}"
+            text+=f" {entry["pos"][0]}"
         else:
             for pos in entry["pos"]:
-                text+=f" {pos},"
+                text+=f"{pos}|"
         text+="\n"
 
     if "field" in entry:
-        text += f'**Semantic field:** \\{entry["field"]}\n'
+        if len(entry["field"]) == 1:
+            text += f'*Semantic field:* {entry["field"][0]}\n'
+        elif len(entry["field"]) == 2:
+            text+=f'*Semantic fields:* {entry["field"][0]}, {entry["field"][1]}.'
+        else: 
+            for i in entry["field"]:
+                text+=f'{entry["field"][i]}|'
 
     if "cases" in entry:
         text += '**Cases:**\n'
@@ -125,7 +145,13 @@ def markdown(entry):
             text+=f"-   **{custom}:** {prop}"
     # print("Done! formatting complete!")
     return text
+"""
+===========================================================
 
+ --------------- INVENTORY FORMATTING - TXT --------------- 
+
+===========================================================
+"""
 def inv_f(dic):
     text = ""
     if "consonant" in dic:
@@ -159,3 +185,25 @@ if __name__ == '__main__':
 
     with open("lexicon.txt", "w", encoding="utf-8") as f:
         f.write(T)
+
+"""
+--------------- --------------- --------------- ----------
+
+--------------- ALLOPHONE FORMATTING - TXT ---------------
+
+--------------- --------------- --------------- ----------
+
+"""
+def alloformat(text):
+    pass
+
+"""
+--------------- --------------- --------------- --------------- 
+
+--------------- ALLOPHONE FORMATTING - MARKDOWN --------------- 
+
+--------------- --------------- --------------- --------------- 
+
+"""
+def allomarkdown(text):
+    pass

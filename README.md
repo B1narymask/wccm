@@ -19,7 +19,7 @@ $agˈna
 Turns into this:
 ```
 Agná
- \[agˈna] bird, plural: ágnaya
+ [agˈna] bird, plural: ágnaya
 Gender: Masculine
 POS: Noun
 Semantic field: animals
@@ -63,7 +63,7 @@ WCCM uses symbols to represent different properties. Their order is irrelevant, 
 | `=`          | Synonym(s)            | **=feline**                   |
 | `!`          | Antonym(s)            | **!dog**                      |
 | `%`          | Part of speech        | **%noun**                     |
-| `*`          | Etymology             | **\*from 'kaltnaen' **        |
+| `*`          | Etymology             | **\*from 'kaltnaen'**         |
 | `\|` and `/` | Conjugations          | **\|3rd sg present /does**    |
 | `@` and `:`  | Custom                | **@class :animte**            |
 | `_`          | Comment               | **_ what do I even put here** |
@@ -83,11 +83,12 @@ Don't like this set of symbols? That's completely fine! You can edit them anytim
 I know that typing IPA symbols can be tedious if you don't have the tools, which is why I implemented a function to let you map a character to an IPA sound, to make writing transcriptions easier!
 # Configuration 
 
-`config.json` lets you customize:
+WCCM lets you customize:
 - what each symbol means (which property it represents)
 - IPA character mapping (e.g., `:` -> `ː`)
 - default output file
 
+Default configurations:
 ```json
 {
     "ipa": {
@@ -143,14 +144,82 @@ I know that typing IPA symbols can be tedious if you don't have the tools, which
 }
 ```
 
-For the IPA replacement mapping, the character on the left is the character that the program will replace. So, essentially, if your IPA is "SaTaZ", with the default configurations (the ones showed above) it would turn into "ʃaθaʒ". You can add/remove as many as you want! (As long as you don't map 1 character to 2 symbols or use digraphs).
+For the IPA replacement mapping, the character on the left is the character that the program will replace. So, essentially, if your IPA is "SaTaZ", with the default configurations (the ones showed above) it would turn into "ʃaθaʒ". You can add/remove as many as you want! (As long as you don't map 1 character to 2 symbols).
 
 Same goes for the properties, although it is very important that you do **not** alter the keywords, otherwise the tool will break.
 
 As you might've guessed, you can also choose the default name and format of the output file! The name can be anything you want, and the file extension can be either `.txt` or `.md`. A `lexicon.json` file is always automatically generated, which is why `.json` isn't an option in preferences.
+
+Note: since I'm aware most conlangers aren't developers and wouldn't want to mess with the `.json`, you can now change preferences via `.pref` files. For exmple, this file:
+```
+;comment.
+:J.ʝ
+:^j.ʲ
+:c.tʃ
+:N.ɲ
+
+?defaultFileName.output
+?defaultFormat.txt
+```
+Would make `config.json` look like this:
+
+```json
+{
+    "ipa": {
+        "S": "ʃ",
+        "T": "θ",
+        "R": "ɾ",
+        "B": "β",
+        "D": "ð",
+        "N": "ŋ",
+        "^j": "ʲ",
+        "Z": "ʒ",
+        ":": "ː",
+        "'": "ˈ",
+        "N": "ɲ",
+        "W": "ʷ",
+        "H": "ʰ",
+        "A": "ɑ",
+        "E": "ə",
+        "I": "ɪ",
+        "3": "ɛ",
+        "O": "ɔ",
+        "U": "ʊ",
+        "^": "ʌ",
+        "X": "χ",
+        "J": "ʝ",
+        "c":"tʃ"
+    },
+    "prefs": {
+        "output": {
+            "defaultFileName": "output",
+            "defaultFormat": "txt"
+        }
+    }
+}
+```
+(skipped `"inv"` and `"props"` since they remain unchanged).
+
+All you have to do to change your configs is write your file, save it as `.pref` and just use it as an argument:
+```
+wccm configs.pref 
+```
+and that's it!
+
+Here's the full `.pref` syntax:
+
+| Symbol | Config                                                                      |
+| ------ | --------------------------------------------------------------------------- |
+| `;`    | none; comment                                                               |
+| `:`    | IPA mapping                                                                 |
+| `?`    | output preferences (default name and format of output file)                 |
+| `,`    | edit property symbols (e.g., use `??` instead of `#` for semantic field)    |
+| `/`    | inventory mapping (same as above but symbols used for inventory management) |
+
+I'm aware that this can be confusing and hard to get used to, so I'm working to improve the way to manage configurations, but in the meantime you'll have to put up with that (sorry!)
+
 ## Limitations 
 
-Currently, the case symbols (`;` and `:`) can't be customized, as well as the conjugation symbols (`|` and `/`).
 If you ever want to remap a symbol, as said before, you're allowed (and encouraged) to do so! However, it is very important that you don't map `\` to anything. Since i don't want to confuse you with tech talk, basically, `\` is a special character and if you try to use it for mapping the configuration file is going to break.
 
 Other than that, you should be able to change pretty much anything!
@@ -162,4 +231,5 @@ WCCM started as just a little personal tool I developed because I'm stubborn and
 # Feedback is appreciated! 
 
 This is my first time actually finishing and sharing a project, so I'd genuinely *love* to hear suggestions or ideas for future versions, as well as bug reports and other stuff like that.
-You can contact me pretty much any time in [my twitter (I'm not calling it 'X')](https://x.com/wernasho)
+Also, if you guys think that this is a bit "too technical" for the average conlanger, please let me know and I'll try my best to make it as intuitive and a little more non-coder friendly.
+You can contact me pretty much any time in [**my twitter (I'm not calling it 'X')**](https://x.com/wernasho) or [**my reddit!**](https://reddit.com/user/wernasho)

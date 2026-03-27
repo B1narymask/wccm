@@ -1,0 +1,53 @@
+{
+    "ipa": {
+        "S": "ʃ",
+        "0": "θ",
+        "R": "ɾ",
+        "B": "β",
+        "D": "ð",
+        "N": "ŋ",
+        "J": "ʲ",
+        "Z": "ʒ",
+        ":": "ː",
+        "'": "ˈ",
+        "ny": "ɲ",
+        "W": "ʷ",
+        "H": "ʰ",
+        "A": "ɑ",
+        "E": "ə",
+        "I": "ɪ",
+        "3": "ɛ",
+        "O": "ɔ",
+        "U": "ʊ",
+        "^": "ʌ",
+        "X": "χ"
+
+    },
+    "props": {
+        "$": "ipa",
+        "#": "field",
+        "%": "pos",
+        "_": "comment",
+        "~": "gender",
+        "=": "synonym",
+        "!": "antonym",
+        "+": "plural",
+        "?": "meaning",
+        "*": "etymology",
+        ";": "case",
+        "|": "conjugations",
+        "@": "custom"
+    },
+    "inv":  {
+        ".":  "consonant",
+        ",": "vowel",
+        "^": "tone",
+        "-": "romanization"
+    },
+    "prefs": {
+        "output": {
+            "defaultFileName": "lexicon",
+            "defaultFormat": ".txt"
+        }
+    }
+}

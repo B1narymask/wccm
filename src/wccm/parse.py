@@ -1,5 +1,5 @@
 import sys
-from .storage import config_load
+from .storage import config_load, save
 x = sys.argv[1]
 settings = config_load()
 def ipa_replace(text, config):
@@ -126,5 +126,6 @@ def parse(name, text, config):
     
     if current: 
         entries.append(current)
-
+    save(entries)
+    
     return entries

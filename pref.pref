@@ -1,0 +1,19 @@
+;pref.pref
+; :J.ʝ
+; :^j.ʲ
+; :c.tʃ
+; :N.ɲ
+; :y.y
+ipamap set J to ʝ
+ipamap set ^j to ʲ
+ipamap set c to tʃ
+ipamap set N to ɲ
+
+default file name set output
+default output format set .txt
+
+inventorymap set | to romanization
+propmap set # to comment 
+propmap set .. to field 
+inventorymap set WAA to consonants
+ipamap set WAA to ʃ
