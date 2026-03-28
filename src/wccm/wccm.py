@@ -4,8 +4,8 @@ import sys
 from .storage import save, config_load, load
 from .infoParse import parse_inv
 from .config import set_conf
-# from .cmd import cmd
-from .allophones import alloparse
+from pathlib import Path
+infoPATH = Path(__file__).parent / "info.json"
 def main():
     
     config = config_load()
@@ -41,9 +41,9 @@ def main():
         print("Please select a valid output extension: .md or .txt")
         print("a 'lexicon.json' file is automatically generated, if that's what you wish.")
         exit()
-    if cm or pr:
-        with open(arg, "r", encoding="utf-8") as f:
-            text = f.read()
+    #if cm or pr:
+    with open(arg, "r", encoding="utf-8") as f:
+        text = f.read()
     if cm: 
         entries = parse(arg, text, config)
         formatted_text = ""
@@ -70,17 +70,17 @@ def main():
     elif pr: 
         save(set_conf(arg, text, config), "config.json") 
 
-    elif al:
-        save(text, "info.json")
-        alloparse(text, load("info.json"))
+    #elif al:
+    #    save(text, "info.json")
+    #    alloparse(text, load("info.json"))
     else: 
         inv = parse_inv(text, config)
         formatted = inv_f(inv)
-
-        save(inv, "info.json")
+        #print(f"inv: {inv}\nformatted: \n{formatted}")
+        save(inv, infoPATH)
 
         with open(output, "w", encoding="utf-8") as f:
             f.write(formatted)
-        print(f"Done! created {output}.")
+        print(f"Done! created '{output}'.")
 
         

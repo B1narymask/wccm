@@ -171,23 +171,24 @@ def markdown(entry):
 ===========================================================
 """
 def inv_f(dic):
+    #print(f"type(dic): {type(dic)}")
     text = ""
-    if "consonant" in dic:
+    if len(dic["consonant"]) >0:
         text += "Consonants: \n"
         for sound in dic["consonant"]: 
             text+= f"  - {sound}\n"
     
-    if "vowel" in dic: 
+    if len(dic["vowel"]) >0: 
         text += "Vowels: \n"
         for sound in dic["vowel"]:
             text += f"  - {sound}\n"
     
-    if "tone" in dic:
+    if len(dic["tone"]) >0:
         text+= "Tones: "
         for tone in dic["tone"]:
             text +=f"{tone} "
 
-    if "romanization" in dic: 
+    if len(dic["romanization"]) >0: 
         text += "Romanization:\n"
         for ipa_symbol, roman in dic["romanization"].items():
             text += f"  - {ipa_symbol} → {roman}\n"
