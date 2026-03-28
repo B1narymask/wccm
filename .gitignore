@@ -1,3 +1,4 @@
+src/wccm/config.json
 dist/
 src/__pycache__
 src/wccm/__pycache__
@@ -9,4 +10,6 @@ lexicon.json
 src/wccm/info.json
 *.allo
 output.md
+src/wccm/cmd.py 
+src/wccm/allophones.py
 config.json

@@ -15,10 +15,15 @@ def Format(entry):
             text+=f"Meaning: {entry["meaning"][0]}\n"
 
     if "plural" in entry:
-        text += f'plural: "{entry["plural"]}"'
-
-    text += '\n'
-
+        if len(entry["plural"]) == 1:
+            text += f'Plural: "{entry["plural"][0]}"\n'
+        elif len(entry["plural"]) == 2:
+            text+=f'Plurals: {entry["plural"][0]}, {entry["plural"][1]}\n'
+        else: 
+            text+='Plurals:\n'
+            for plural in entry["plural"]:
+                text+=f'    - {plural}\n'
+    
     if "gender" in entry:
         text += f'Gender: {entry["gender"]}\n'
 
@@ -52,7 +57,7 @@ def Format(entry):
         elif len(entry["field"]) == 2:
             text += f'Semantic fields: {entry["field"][0]}, {entry["field"][1]}\n'
         else: 
-            text+=f'Semantic fields:  '
+            text+='Semantic fields:  '
             for i in entry["field"]:
                 text+=f'{entry["field"][i]}|'
 
@@ -66,11 +71,13 @@ def Format(entry):
         for conjugation, form in entry["conjugations"].items():
             text+=f"    - {conjugation}: {form}\n"
 
+    if "etymology" in entry:
+        text+=f"Etymology: {entry["etymology"]}\n"
+
     if "custom" in entry: 
         for custom, prop in entry["custom"].items():
-            text+=f"{custom}: {prop}"
-
-    print("Done! formatting complete!")
+            text+=f"{custom}: {prop}\n"
+    #print("Done! formatting complete!")
     return text
 
 """
@@ -94,8 +101,15 @@ def markdown(entry):
         else:
             text+=f"**Meaning:** {entry["meaning"][0]}\n"
 
-    if "plural" in entry:
-        text += f'plural: "{entry["plural"]}"\n'
+        if "plural" in entry:
+            if len(entry["plural"]) == 1:
+                text += f'*Plural:* "{entry["plural"][0]}"\n'
+            elif len(entry["plural"]) == 2:
+                text+=f'*Plurals:* *{entry["plural"][0]}, {entry["plural"][1]}*\n'
+            else: 
+                text+='*Plurals:*\n'
+                for plural in entry["plural"]:
+                    text+=f'    - *{plural}*\n'
 
     if "gender" in entry:
         text += f'**Gender:** {entry["gender"]}\n'
@@ -133,18 +147,22 @@ def markdown(entry):
     if "cases" in entry:
         text += '**Cases:**\n'
         for case, form in entry["cases"].items():
-            text += f'    - **{case}:** {form}\n'
+            text += f'    - *{case}: {form}*\n'
 
     if "conjugations" in entry:
         text += '**Conjugations:**\n'
         for conjugation, form in entry["conjugations"].items():
-            text+=f"    - **{conjugation}:** {form}\n"
+            text+=f"    - *{conjugation}: {form}*\n"
+
+    if "etymology" in entry:
+        text+=f"Etymology: *{entry["etymology"]}*\n"
 
     if "custom" in entry: 
         for custom, prop in entry["custom"].items():
-            text+=f"-   **{custom}:** {prop}"
+            text+=f"    - *{custom}: {prop}*\n"
     # print("Done! formatting complete!")
     return text
+
 """
 ===========================================================
 
@@ -175,16 +193,6 @@ def inv_f(dic):
             text += f"  - {ipa_symbol} → {roman}\n"
     print("Done! formatting complete!")
     return text
-
-if __name__ == '__main__':
-    entries = load()
-
-    T = ""
-    for entry in entries:
-        T += Format(entry) + "\n"
-
-    with open("lexicon.txt", "w", encoding="utf-8") as f:
-        f.write(T)
 
 """
 --------------- --------------- --------------- ----------

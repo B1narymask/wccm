@@ -27,7 +27,7 @@
         "$": "ipa",
         "#": "field",
         "%": "pos",
-        "_": "comment",
+        "//": "comment",
         "~": "gender",
         "=": "synonym",
         "!": "antonym",

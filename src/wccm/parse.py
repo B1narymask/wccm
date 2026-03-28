@@ -74,7 +74,7 @@ def parse(name, text, config):
             elif prop_name == "meaning":
                 LISTadd(current, "meaning", value)
             elif prop_name == "plural":
-                current["plural"] = value
+                LISTadd(current, "plural", value)
             elif prop_name == "synonym":
                 LISTadd(current, "synonym", value)
             elif prop_name == "antonym":

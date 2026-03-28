@@ -1,6 +1,8 @@
 from .storage import save, load
+from pathlib import Path
 
 def set_conf(name, text, config):
+    configPATH = Path(__file__).parent / "config.json"
     if not name.endswith(".pref"):
         print("ERROR: Please use .pref files to edit preferences.")
         return 
@@ -67,5 +69,5 @@ def set_conf(name, text, config):
         
         else:
             print(f"Error: in line {line} Keyword '{prop}' not recognized")    
-    save(config, "src/wccm/config.json")
+    save(config, configPATH)
     print("Done! Preferences updated successfully.")
