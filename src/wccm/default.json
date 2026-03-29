@@ -34,7 +34,7 @@
         "+": "plural",
         "?": "meaning",
         "*": "etymology",
-        ";": "case",
+        ";": "cases",
         "|": "conjugations",
         "@": "custom"
     },

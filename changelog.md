@@ -1,5 +1,4 @@
-# v0.3.3, March 28th 2026
+# v0.3.4, March 28th 2026
 
 ## Fixed
-- fixed formatting bugs (AGAIN)
-- fixed `.cmi` formatting not working due to path bugs
+- formatting errors (they're everywhere), more specifically, cases not showing up in output.
