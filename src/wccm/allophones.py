@@ -1,34 +1,68 @@
 from .storage import save, load, config_load
 from .parse import ipa_replace
-import sys
+c = config_load()
+ipa = c["ipa"]
+#syntax: change i - j
+def changeparse (line, conf):
+    ipa = conf["ipa"]
+    if not line or line.startswith("//"): pass #skips comments and empty lines 
+    if not line.startswith("change"): 
+        print(f"Error: missing 'change' keyword. Line:\n{line}")
+        return 
+    change = line.split(" ", 1)
+    sound, allo = change[1].split(" - ")
+    sound = sound.strip()
+    allo = allo.strip()
+    sound = ipa_replace(sound, ipa)
+    allo = ipa_replace(allo, ipa)
+    output = [sound, allo]
+    return output 
+
+#syntax: env _V
+def envparse (line):
+    if not line or line.startswith("//"): pass
+    if not line.startswith("env"): 
+        print(f"Error: missing 'env' keyword. Line:\n{line}")
+        return
+    env = line[4:]
+    try:
+        posINDEX = env.index("_")
+    except ValueError:
+        print("Error: position character '_' not found. \nPlease, use '_' to indicate where the sound becomes the allophone")
+        return
+    contextLEFT = env[:posINDEX]
+    contextRIGHT = env[posINDEX+1:]
+    contextRIGHT = contextRIGHT.strip()
+    
+    output = {
+        "left": contextLEFT,
+        "right": contextRIGHT,
+        "raw": env
+    }
+    return output
+
 def alloparse(text, info):
-
+    rules = []
     lines = text.splitlines()
-    allos = info["allophones"]
-    
+    allos = info.get("allophones", [])
+
+    currentRULE = {}
+
     for line in lines:
-        line = line.strip()
-        if not line: 
-            continue
-        sounds, rules = line.split("/", 1)  
-        phoneme, allophone = sounds.split("-", 1)
-        groups, position = rules.split("_")
-        info["phoneme"] = phoneme 
-
-        phoneme = ipa_replace(phoneme, config_load())
-        allophone = ipa_replace(allophone, config_load())
-        phon = allos[phoneme]
-        print(f"phon: {phon} \nsounds: {sounds},\nrules: {rules}, \nallos: {allos} \nallophone; {allophone}, \nphoneme:{phoneme}")
-        print(f"groups: {groups}\nposition: {position}")
-
-    
-        #if rules == "_V": 
-        #    phon["before"] = info["Vowel"]
-        #    phon["becomes"] = allophone 
-        #elif rules == "V_V":
-        #    phon["before"] = info["vowel"]
-        #    phon["after"] = info["vowel"]
-        #    phon["becomes"] = allophone 
-    #if not file.endswith(".allo"):
-    #    print("please use .allo files for allophony related information.")
-    #    return
+        if line.startswith("//") or not line: pass
+        elif line.startswith("change"):
+            changeDATA = changeparse(line, c)
+            currentRULE["input"] = changeDATA[0]
+            currentRULE["output"] = changeDATA[1]
+        elif line.startswith("env"):
+            envDATA = envparse(line)
+            currentRULE["raw"] = envDATA["raw"]
+            currentRULE["env"] = {
+                "left": envDATA["left"],
+                "right": envDATA["right"]
+            }
+            if "input" in currentRULE and "output" in currentRULE:
+                rules.append(currentRULE.copy())
+                currentRULE = {}  
+    info["allophones"] = rules 
+    return info 

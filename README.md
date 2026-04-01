@@ -75,22 +75,22 @@ WCCM uses symbols to represent different properties. Their order is irrelevant, 
 ## Lexicon
 (Lexicon-related syntax goes in `.wccm` files).
 
-| Symbol       | Field                 | Example                       |
-| ------------ | --------------------- | ----------------------------- |
-| (None)       | Word                  | **Kat**                       |
-| `$`          | IPA                   | **$kæt**                      |
-| `#`          | Semantic field        | **\#animal**                  |
-| `~`          | Gender                | **~M**                        |
-| `?`          | Translation           | **?Cat**                      |
-| `+`          | Plural form(s)        | **+Cats**                     |
-| `;` and `:`  | Case name / case form | **;gen :cat's**               |
-| `=`          | Synonym(s)            | **=feline**                   |
-| `!`          | Antonym(s)            | **!dog**                      |
-| `%`          | Part of speech        | **%noun**                     |
-| `*`          | Etymology             | **\*from 'kaltnaen'**         |
-| `\|` and `/` | Conjugations          | **\|3rd sg present /does**    |
-| `@` and `:`  | Custom                | **@class :animte**            |
-| `_`          | Comment               | **_ what do I even put here** |
+| Symbol       | Field                 | Example                        |
+| ------------ | --------------------- | ------------------------------ |
+| (None)       | Word                  | **Kat**                        |
+| `$`          | IPA                   | **$kæt**                       |
+| `#`          | Semantic field        | **\#animal**                   |
+| `~`          | Gender                | **~M**                         |
+| `?`          | Translation           | **?Cat**                       |
+| `+`          | Plural form(s)        | **+Cats**                      |
+| `;` and `:`  | Case name / case form | **;gen :cat's**                |
+| `=`          | Synonym(s)            | **=feline**                    |
+| `!`          | Antonym(s)            | **!dog**                       |
+| `%`          | Part of speech        | **%noun**                      |
+| `*`          | Etymology             | **\*from 'kaltnaen'**          |
+| `\|` and `/` | Conjugations          | **\|3rd sg present /does**     |
+| `@` and `:`  | Custom                | **@class :animte**             |
+| `//`          | Comment              | **// what do I even put here** |
 ## Inventory
 (Inventory-related information goes in `.cmi` files).
 
@@ -101,7 +101,30 @@ WCCM uses symbols to represent different properties. Their order is irrelevant, 
 | `^`    | Tone         | **\^rising** |
 | `-`    | romanization | **-ñ :ny**   |
 
-Don't like this set of symbols? That's completely fine! You can edit them anytime by going into `config.json`.
+## Allophony
+(allophony-related info goes in `.allo` files).
+
+No more freaky symbols this time, this is how allophone files work:
+
+```
+change <phoneme> - <allophone>
+env <rules>
+```
+
+For example, this:
+```
+change b - B
+env V_V
+```
+would output this:
+
+```
+b → β / V_V
+
+
+```
+
+Don't like that set of symbols? That's completely fine! You can edit them anytime by going into `config.json`.
 
 ## IPA 
 I know that typing IPA symbols can be tedious if you don't have the tools, which is why I implemented a function to let you map a character to an IPA sound, to make writing transcriptions easier!

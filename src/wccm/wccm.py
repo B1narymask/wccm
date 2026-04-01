@@ -1,33 +1,36 @@
 from .parse import parse
-from .formatter import Format, markdown, inv_f
+from .formatter import Format, markdown, inv_f, alloTXT
 import sys 
 from .storage import save, config_load, load
 from .infoParse import parse_inv
 from .config import set_conf
+from .allophones import alloparse
 from pathlib import Path
 infoPATH = Path(__file__).parent / "info.json"
+configPATH = Path(__file__).parent / "config.json"
+alloPATH = Path(__file__).parent / "allophony.json"
 def main():
-    
+    exts = ["wccm", "cmi", "pref", "allo"]
     config = config_load()
     arg = sys.argv[1]
-    three = None
+    #three = None
     if len(sys.argv) >= 3:
         output = sys.argv[2]
-    elif len(sys.argv) >= 4:
-        three = sys.argv[3]
-   
+    #elif len(sys.argv) >= 4:
+    #    three = sys.argv[3]
     else:  
         output = f"{config["prefs"]["output"]["defaultFileName"]}.{config["prefs"]["output"]["defaultFormat"]}"
     #print(f"arg:{arg}")
     #print(f"output:{output}")
     text = ""
-
+    ex = arg.split(".")
     if not arg:
         print("Usage: wccm <file> [output]")
         exit()
 
-    elif not (arg.endswith(".wccm") or arg.endswith(".cmi") or arg.endswith(".pref") or arg.endswith(".allo")):
-        print("Please use a valid file extension. Valid extensions: \n.wccm -> Lexicon \n.cmi -> inventory\n .pref -> Preferences\n.allo -> allophony")
+    elif ex[1] not in exts:
+        print("Please use a valid file extension. Valid extensions: \n.wccm -> Lexicon \n.cmi -> inventory\n .pref -> Preferences")
+        print(".allo -> allophony")
         exit()
 
     cm = False
@@ -68,19 +71,29 @@ def main():
 
         print(f"Done! Created {output} with {len(entries)} entries.")
     elif pr: 
-        save(set_conf(arg, text, config), "config.json") 
+        save(set_conf(arg, text, config), configPATH) 
 
-    #elif al:
-    #    save(text, "info.json")
-    #    alloparse(text, load("info.json"))
+    elif al:
+        #save(alloparse())
+        save(alloparse(text, load("allophony.json")), alloPATH)
+        save(alloparse(text, load("allophony.json")), "allophony.json")
+        form = alloTXT(alloparse(text, config))
+        if output.endswith(".txt"):
+            with open(output, "w", encoding="utf-8") as f: 
+                f.write(form)
+            print(f"Done! created '{output}'")
+        else: 
+            print("Heeeeyyyy... allo files (and cmi files) only support .txt output as of this version, \n-sorry, Wer (;'v)")
     else: 
         inv = parse_inv(text, config)
         formatted = inv_f(inv)
         #print(f"inv: {inv}\nformatted: \n{formatted}")
         save(inv, infoPATH)
-
-        with open(output, "w", encoding="utf-8") as f:
-            f.write(formatted)
-        print(f"Done! created '{output}'.")
+        if output.endswith(".txt"):
+            with open(output, "w", encoding="utf-8") as f:
+                f.write(formatted)
+            print(f"Done! created '{output}'.")
+        else: 
+            print("Heeeeyyyy... cmi files (and allo files) only support .txt output as of this version, \n-sorry, Wer (;'v)")
 
         

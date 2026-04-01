@@ -82,9 +82,7 @@ def Format(entry):
 
 """
 =========================================
-
  --------------- MARKDOWN ---------------
-
 =========================================
 """
 def markdown(entry): 
@@ -165,9 +163,7 @@ def markdown(entry):
 
 """
 ===========================================================
-
  --------------- INVENTORY FORMATTING - TXT --------------- 
-
 ===========================================================
 """
 def inv_f(dic):
@@ -197,22 +193,24 @@ def inv_f(dic):
 
 """
 --------------- --------------- --------------- ----------
-
 --------------- ALLOPHONE FORMATTING - TXT ---------------
-
 --------------- --------------- --------------- ----------
 
 """
-def alloformat(text):
-    pass
+def alloTXT(data):
+    text = ""
+    alloz =  data.get("allophones", [])
+    if not alloz: 
+        return
+    
+    for rule in alloz: 
+        env = rule.get("raw","")
+        if env: 
+            text += f"{rule["input"]} → {rule["output"]} / {env}\n\n"
+        else: 
+            text+= f"{rule["input"]} → {rule["output"]}\n\n"
+    return text 
 
-"""
---------------- --------------- --------------- --------------- 
-
---------------- ALLOPHONE FORMATTING - MARKDOWN --------------- 
-
---------------- --------------- --------------- --------------- 
-
-"""
-def allomarkdown(text):
-    pass
+def alloMD(data):
+    pass 
+# how do I format the unformattable??? How tf do I add markdown to this? ;-;

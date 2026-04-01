@@ -1,4 +1,5 @@
-# v0.3.4, March 28th 2026
+# v0.4.0, March 31st 2026
 
-## Fixed
-- formatting errors (they're everywhere), more specifically, cases not showing up in output.
+## Added
+- Allophone definitions (`.allo` files)
+- If you skip the 'Part Of Speech' property in `.wccm` files, it defaults to "Noun"

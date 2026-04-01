@@ -118,6 +118,8 @@ def parse(name, text, config):
                     current["custom"] = {}
                 current["custom"][custom] = val
             elif prop_name == "comment": continue
+            if "pos" not in current:
+                LISTadd(current, "pos", "Noun" )
         else:
             # No property symbol found -> New word
             if current:  
