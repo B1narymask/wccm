@@ -15,14 +15,15 @@ def Format(entry):
             text+=f"Meaning: {entry["meaning"][0]}\n"
 
     if "plural" in entry:
+        p = entry["plural"]
         if len(entry["plural"]) == 1:
-            text += f'Plural: "{entry["plural"][0]}"\n'
+            text += f'Plural: "{p[0]["word"]}" [{p[0]["ipa"]}]\n'
         elif len(entry["plural"]) == 2:
-            text+=f'Plurals: {entry["plural"][0]}, {entry["plural"][1]}\n'
+            text+=f'Plurals: {p[0]["word"]} [{p[0]["ipa"]}], {p[1]["word"]} [{p[1]["ipa"]}]\n'
         else: 
             text+='Plurals:\n'
-            for plural in entry["plural"]:
-                text+=f'    - {plural}\n'
+            for i, plural in enumerate(entry["plural"]):
+                text+=f'    - {plural["word"]} [{plural["ipa"]}]\n'
     
     if "gender" in entry:
         text += f'Gender: {entry["gender"]}\n'
@@ -87,7 +88,7 @@ def Format(entry):
                 text+=f"  Sentence: {ex["sentence"]}\n"
                 text+=f"  Meaning: {ex["translation"]}\n"
                 text+=f"  Glossing: {ex["gloss"]}\n"
-                text+=f"  IPA: {ex["ipa"]}"
+                text+=f"  IPA: {ex["ipa"]}\n--\n"
         else:
             text+="Example sentence: " 
             text+=f"  {e["sentence"]}\n"
@@ -117,15 +118,16 @@ def markdown(entry):
         else:
             text+=f"**Meaning:** {entry["meaning"][0]}\n"
 
-        if "plural" in entry:
-            if len(entry["plural"]) == 1:
-                text += f'*Plural:* "{entry["plural"][0]}"\n'
-            elif len(entry["plural"]) == 2:
-                text+=f'*Plurals:* *{entry["plural"][0]}, {entry["plural"][1]}*\n'
-            else: 
-                text+='*Plurals:*\n'
-                for plural in entry["plural"]:
-                    text+=f'    - *{plural}*\n'
+    if "plural" in entry:
+        p = entry["plural"]
+        if len(entry["plural"]) == 1:
+            text += f'*Plural:* "{p[0]["word"]}" [{p[0]["ipa"]}]\n'
+        elif len(entry["plural"]) == 2:
+            text+=f'*Plurals:* {p[0]["word"]} [{p[0]["ipa"]}], {p[1]["word"]} [{p[1]["ipa"]}]\n'
+        else: 
+            text+='*Plurals:*\n'
+            for i, plural in enumerate(entry["plural"]):
+                text+=f'    - {plural["word"]} *[{plural["ipa"]}]*\n'
 
     if "gender" in entry:
         text += f'**Gender:** {entry["gender"]}\n'

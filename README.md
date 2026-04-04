@@ -7,10 +7,10 @@ For example, this:
 
 ```
 Drink
-$dɹInkH
+$dɹINkH
 %noun
 %verb
-+dirnks
++dirnks $ dɹINkHs
 ;gen :drink's
 |3rd sg present /drinks
 =beverage
@@ -29,11 +29,11 @@ $dɹInkH
 
 Turns into this:
 ```
-Drink [dɹɪnkʰ]
+Drink [dɹɪŋkʰ]
 Meanings:
    - take (a liquid) into the mouth and swallow
    - a liquid that can be swallowed as refreshment or nourishment
-plural: "dirnks"
+plural: "drinks" [dɹɪŋkʰ]
 Synonyms: 
     - beverage
     - liquid

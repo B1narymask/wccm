@@ -74,7 +74,21 @@ def parse(name, text, config):
             elif propNAME == "meaning":
                 LISTadd(current, "meaning", value)
             elif propNAME == "plural":
-                LISTadd(current, "plural", value)
+                part1 = []
+                if " $ " in value: 
+                    part1 = value.split(" $ ", 1)
+                    dollarINDEX = value.index("$")
+                    #print(part1)
+                if "plural" not in current:
+                    current["plural"] = []
+                try:
+                    current["plural"].append( {
+                        "word": value[:dollarINDEX-1],
+                        "ipa": ipa_replace(part1[1], IPA),
+                        "identifier": f"{part1[0]}.pl"
+                    })
+                except IndexError:
+                    print(f"Error: in line '{line}', plural parsing failed. Make sure to add a space after AND before the plural IPA (e.g., '+cats $ kAts')")
             elif propNAME == "synonym":
                 LISTadd(current, "synonym", value)
             elif propNAME == "antonym":

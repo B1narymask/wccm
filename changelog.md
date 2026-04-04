@@ -3,6 +3,7 @@
 ## Added
 - example sentences with glossing, meaning and IPA
 - new field: identifier `^` (for glossing)
+- you can now define plural IPA directly in definition: `+[plural] $ [IPA]` (sadly, the ` $ ` as the IPA marker is hardcoded, and the spaces are necessary)
 ## example sntence syntax
 `>[sentence in conlang] $ [IPA] ? [meaning] >> [gloss]`
 Example:
