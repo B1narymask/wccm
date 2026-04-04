@@ -5,7 +5,7 @@ def Format(entry):
 
     if "ipa" in entry:
         text += f' [{entry["ipa"]}]\n'
-
+    else: text+="\n"
     if "meaning" in entry:
         if len(entry["meaning"]) >= 2:
             text+= "Meanings:\n"
@@ -77,6 +77,24 @@ def Format(entry):
     if "custom" in entry: 
         for custom, prop in entry["custom"].items():
             text+=f"{custom}: {prop}\n"
+    
+    if "example" in entry: 
+        e = entry["example"]
+        if len(entry["example"]) >= 2:
+            
+            text+="Example sentences: \n"
+            for ex in entry["example"]: 
+                text+=f"  Sentence: {ex["sentence"]}\n"
+                text+=f"  Meaning: {ex["translation"]}\n"
+                text+=f"  Glossing: {ex["gloss"]}\n"
+                text+=f"  IPA: {ex["ipa"]}"
+        else:
+            text+="Example sentence: " 
+            text+=f"  {e["sentence"]}\n"
+            text+=f"  Meaning: {e["translation"]}\n"
+            text+=f"  Glossing: {e["gloss"]}\n"
+            text+=f"  IPA: {e["ipa"]}\n"
+    text+='\n'
     #print("Done! formatting complete!")
     return text
 
@@ -158,6 +176,23 @@ def markdown(entry):
     if "custom" in entry: 
         for custom, prop in entry["custom"].items():
             text+=f"    - *{custom}: {prop}*\n"
+    
+    if "example" in entry: 
+        e = entry["example"]
+        if len(entry["example"]) >= 2:
+            
+            text+="*Example sentences:* \n"
+            for ex in entry["example"]: 
+                text+=f"    - {ex["sentence"]}\n"
+                text+=f"        - Meaning: {ex["translation"]}\n"
+                text+=f"        - Glossing: \n          ```{ex["gloss"]}```\n"
+                text+=f"        - IPA: {ex["ipa"]}\n"
+        else:
+            text+="*Example sentence:* \n" 
+            text+=f"    - {e["sentence"]}\n"
+            text+=f"        - Meaning: {e["translation"]}\n"
+            text+=f"        - Glossing:\n               ``` {e["gloss"]}```\n"
+            text+=f"        - IPA: {e["ipa"]}\n"
     # print("Done! formatting complete!")
     return text
 
