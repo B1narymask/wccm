@@ -51,7 +51,7 @@ def parse(name, text, config):
 
         if matched_symbol:
             value = line[len(matched_symbol):].strip()
-            prop_name = props[matched_symbol]
+            propNAME = props[matched_symbol]
         
         # check the first character of the line is mapped to anything
         #if symbol in props:
@@ -61,29 +61,29 @@ def parse(name, text, config):
             if current is None:
                 current = {}
 
-            if prop_name == "ipa":
+            if propNAME == "ipa":
                 current["ipa_raw"] = value
                 current["ipa"] = ipa_replace(value, IPA) # IPA mapping thing 
 
-            elif prop_name == "field":
+            elif propNAME == "field":
                 LISTadd(current, "field", value)
-            elif prop_name == "gender":
+            elif propNAME == "gender":
                 current["gender"] = value 
-            elif prop_name == "pos":
+            elif propNAME == "pos":
                 LISTadd(current, "pos", value)
-            elif prop_name == "meaning":
+            elif propNAME == "meaning":
                 LISTadd(current, "meaning", value)
-            elif prop_name == "plural":
+            elif propNAME == "plural":
                 LISTadd(current, "plural", value)
-            elif prop_name == "synonym":
+            elif propNAME == "synonym":
                 LISTadd(current, "synonym", value)
-            elif prop_name == "antonym":
+            elif propNAME == "antonym":
                 LISTadd(current, "antonym", value)        
-            elif prop_name == "etymology":
+            elif propNAME == "etymology":
                 current["etymology"] = value
             
             # special case for grammatical cases (using ';')
-            elif prop_name == "cases":
+            elif propNAME == "cases":
                 case_, form = value.split(":", 1)
                 case_ = case_.strip()
                 form = form.strip()
@@ -96,7 +96,7 @@ def parse(name, text, config):
                 current["cases"][case_] = form
 
             # special case 2, using '|' for conjugations
-            elif prop_name == "conjugations": 
+            elif propNAME == "conjugations": 
                 conjugation, form = value.split("/", 1)
                 conjugation = conjugation.strip()
                 form = form.strip()
@@ -109,7 +109,7 @@ def parse(name, text, config):
                     raise ValueError(f"Invalid conjugation data: {value}")
             
             # special case 3: custom properties
-            elif prop_name == "custom": 
+            elif propNAME == "custom": 
                 custom, val = value.split(":", 1)
                 custom = custom.strip()
                 val = val.strip()
@@ -117,9 +117,29 @@ def parse(name, text, config):
                 if "custom" not in current: 
                     current["custom"] = {}
                 current["custom"][custom] = val
-            elif prop_name == "comment": continue
-            if "pos" not in current:
+            elif propNAME == "comment": continue
+            elif "pos" not in current:
                 LISTadd(current, "pos", "Noun" )
+            elif propNAME == "example": 
+                part1 = value.split(" $ ", 1)
+                sentence = part1[0].strip()
+                rest = part1[1].strip()
+                meaning = rest.split(" ? ", 1)
+                meaning[0] = meaning[0].strip()
+                meaning[1] = meaning[1].strip()
+                meaning[0] = ipa_replace(meaning[0], IPA)
+                gloss = meaning[1].split(" >> ")
+                arrowINDEX = meaning[1].index(">>")
+                if "example" not in current:
+                    current["example"] = []
+                current["example"].append({
+                    "sentence": sentence,
+                    "ipa": meaning[0], 
+                    "translation": meaning[1][:arrowINDEX-1],
+                    "gloss": gloss[1]
+                })
+            elif propNAME == "identifier": current["identifier"] = value
+                
         else:
             # No property symbol found -> New word
             if current:  

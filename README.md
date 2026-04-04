@@ -90,7 +90,21 @@ WCCM uses symbols to represent different properties. Their order is irrelevant, 
 | `*`          | Etymology             | **\*from 'kaltnaen'**          |
 | `\|` and `/` | Conjugations          | **\|3rd sg present /does**     |
 | `@` and `:`  | Custom                | **@class :animte**             |
-| `//`          | Comment              | **// what do I even put here** |
+| `//`         | Comment               | **// what do I even put here** |
+|  `^`         | Identifier            | **^Q**                         |
+| `>`          | Example sentence      | <syntax too big to include>    |
+### Example sentence syntax
+
+`>[sentence in conlang] $ [IPA] ? [meaning] >> [gloss]`
+
+Example:
+
+`>xle thronuth fa? $ xle TRonuT fa ? are you okay? >> good be.2sg Q`
+
+***IMPORTANT NOTE:*** The symbols and their order is **fixed**. You cannot change the order in which the symbols appear, and said symbols are hardcoded to the defaults even if you've changed them in a `.pref` file.
+The spaces between symbols (` ? ` instead of `?`) *IS* necessary, since the parser specifically looks for ` ? ` and does the same with the other symbols.
+
+This is going to be improved in future updates.
 ## Inventory
 (Inventory-related information goes in `.cmi` files).
 
@@ -191,9 +205,7 @@ Default configurations:
 }
 ```
 
-For the IPA replacement mapping, the character on the left is the character that the program will replace. So, essentially, if your IPA is "SaTaZ", with the default configurations (the ones showed above) it would turn into "ʃaθaʒ". You can add/remove as many as you want! (As long as you don't map 1 character to 2 symbols).
-
-Same goes for the properties, although it is very important that you do **not** alter the keywords, otherwise the tool will break.
+For the IPA replacement mapping, the character on the left is the character that the program will replace. So, essentially, if your IPA is "SaTaZ", with the default configurations (the ones showed above) it would turn into "ʃaθaʒ".
 
 As you might've guessed, you can also choose the default name and format of the output file! The name can be anything you want, and the file extension can be either `.txt` or `.md`. A `lexicon.json` file is always automatically generated, which is why `.json` isn't an option in preferences.
 

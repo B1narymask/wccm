@@ -1,7 +1,7 @@
 {
   "ipa": {
     "S": "ʃ",
-    "0": "θ",
+    "T": "θ",
     "R": "ɾ",
     "B": "β",
     "D": "ð",
@@ -36,7 +36,9 @@
     "*": "etymology",
     ";": "cases",
     "|": "conjugations",
-    "@": "custom"
+    "@": "custom",
+    ">": "example",
+    "^": "identifier"
     },
    "inv":  {
     ".":  "consonant",

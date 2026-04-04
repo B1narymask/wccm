@@ -12,3 +12,4 @@ src/wccm/info.json
 output.md
 src/wccm/cmd.py 
 config.json
+src/wccm/glosser.py
