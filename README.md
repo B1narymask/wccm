@@ -102,7 +102,7 @@ Example:
 `>xle thronuth fa? $ xle TRonuT fa ? are you okay? >> good be.2sg Q`
 
 ***IMPORTANT NOTE:*** The symbols and their order is **fixed**. You cannot change the order in which the symbols appear, and said symbols are hardcoded to the defaults even if you've changed them in a `.pref` file.
-The spaces between symbols (` ? ` instead of `?`) *IS* necessary, since the parser specifically looks for ` ? ` and does the same with the other symbols.
+The spaces between symbols (`  ?  ` instead of `?`) *IS* necessary, since the parser specifically looks for `  ?  ` and does the same with the other symbols.
 
 This is going to be improved in future updates.
 ## Inventory
