@@ -1,28 +1,31 @@
 {
   "ipa": {
-    "S": "ʃ",
-    "T": "θ",
     "R": "ɾ",
     "B": "β",
     "D": "ð",
     "N": "ŋ",
-    "J": "ʲ",
     "Z": "ʒ",
     ":": "ː",
     "'": "ˈ",
-    "ny": "ɲ",
     "W": "ʷ",
     "H": "ʰ",
     "A": "ɑ",
     "E": "ə",
     "I": "ɪ",
-    "3": "ɛ",
     "O": "ɔ",
     "U": "ʊ",
     "^": "ʌ",
-    "X": "χ"
-
-    },
+    "X": "χ",
+    "gh": "ʁ",
+    "ñ": "ɲ",
+    "0": "θ",
+    "q": "ʃ",
+    "c": "tʃ",
+    "^j": "ʲ",
+    "J": "ʝ",
+    "¿": "ˌ",
+    "3": "ɛ"
+  },
   "props": {
     "$": "ipa",
     "#": "field",
@@ -34,22 +37,22 @@
     "+": "plural",
     "?": "meaning",
     "*": "etymology",
-    ";": "cases",
     "|": "conjugations",
     "@": "custom",
     ">": "example",
-    "^": "identifier"
-    },
-   "inv":  {
-    ".":  "consonant",
+    "^": "identifier",
+    "-": "cases"
+  },
+  "inv": {
+    ".": "consonant",
     ",": "vowel",
     "^": "tone",
     "-": "romanization"
-    },
+  },
   "prefs": {
     "output": {
-      "defaultFileName": "lexicon",
+      "defaultFileName": "a",
       "defaultFormat": "txt"
-      }
+    }
   }
 }
