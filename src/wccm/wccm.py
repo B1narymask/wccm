@@ -1,5 +1,5 @@
 from .parse import parse
-from .formatter import Format, markdown, inv_f, alloTXT
+from .formatter import Format, markdown, inv_f, alloTXT, reverse
 import sys 
 from .storage import save, config_load, load
 from .infoParse import parse_inv
@@ -13,19 +13,27 @@ def main():
     exts = ["wccm", "cmi", "pref", "allo"]
     config = config_load()
     arg = sys.argv[1]
-    #three = None
+    rev = None
+    revBOOL = False
     if len(sys.argv) >= 3:
         output = sys.argv[2]
-    #elif len(sys.argv) >= 4:
-    #    three = sys.argv[3]
     else:  
         output = f"{config["prefs"]["output"]["defaultFileName"]}.{config["prefs"]["output"]["defaultFormat"]}"
     #print(f"arg:{arg}")
     #print(f"output:{output}")
+    if len(sys.argv) >= 4:
+        rev = sys.argv[3]
+        rev = rev.lower()
+        revBOOL = True
+        if rev not in ["reverse", "eng"]: 
+            print(f"Error: option '{rev}' not recognized.")
+            revBOOL = False
+            return
+
     text = ""
     ex = arg.split(".")
     if not arg:
-        print("Usage: wccm <file> [output]")
+        print("Usage: wccm <file> [output] [mode]")
         exit()
 
     elif ex[1] not in exts:
@@ -71,8 +79,7 @@ def main():
 
         print(f"Done! Created {output} with {len(entries)} entries.")
     elif pr: 
-        save(set_conf(arg, text, config), configPATH) 
-
+        set_conf(arg, text, config) 
     elif al:
         #save(alloparse())
         save(alloparse(text, load("allophony.json")), alloPATH)
@@ -84,6 +91,7 @@ def main():
             print(f"Done! created '{output}'")
         else: 
             print("Heeeeyyyy... allo files (and cmi files) only support .txt output as of this version, \n-sorry, Wer (;'v)")
+    
     else: 
         inv = parse_inv(text, config)
         formatted = inv_f(inv)
@@ -95,5 +103,10 @@ def main():
             print(f"Done! created '{output}'.")
         else: 
             print("Heeeeyyyy... cmi files (and allo files) only support .txt output as of this version, \n-sorry, Wer (;'v)")
-
-        
+    if revBOOL:
+        entriez = parse(arg, text, config)
+        formattedTEXT = ""
+        for entry in entriez:
+            formattedTEXT += reverse(entry) + "\n" + "---" + "\n"
+        with open(output, "w", encoding="utf-8") as f:
+            f.write(formattedTEXT)

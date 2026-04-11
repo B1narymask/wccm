@@ -1,15 +1,7 @@
-# v0.5.0 beta, April 4th 2026
+# v0.6.0, April 11th 2026
 
 ## Added
-- example sentences with glossing, meaning and IPA
-- new field: identifier `^` (for glossing)
-- you can now define plural IPA directly in definition: `+[plural] $ [IPA]` (sadly, the ` $ ` as the IPA marker is hardcoded, and the spaces are necessary)
-## example sntence syntax
-`>[sentence in conlang] $ [IPA] ? [meaning] >> [gloss]`
-Example:
+- `reverse` option for English to conlang output instead of standard conlang to English (`wccm file.wccm output.txt reverse`)
 
-`>xle thronuth fa? $ xle TRonuT fa ? are you okay? >> good be.2sg Q`
-
-***IMPORTANT NOTE:*** The symbols and their order is **fixed**. You cannot change the order in which the symbols appear, and said symbols are hardcoded to the defaults even if you've changed them in a `.pref` file.
-
-This is going to be improved in future updates.
+## Fixed
+- Fixed configurations breaking after parsing `.pref` files

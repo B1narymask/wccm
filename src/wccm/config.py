@@ -3,14 +3,20 @@ from pathlib import Path
 
 def set_conf(name, text, config):
     configPATH = Path(__file__).parent / "config.json"
+    print(f"str(configPATH): {str(configPATH)}")
     if not name.endswith(".pref"):
         print("ERROR: Please use .pref files to edit preferences.")
         return 
     lines = text.splitlines()
-    default = load("default.json")
+    default = load("default.json") #if not load("default.json") is None else {}
+
+    print(f'type(load("default.json")): {type(load("default.json"))}')
+    for i, j in default.items():
+        print(f"{i}: {j}\n")
     config["ipa"] = default.get("ipa", {}).copy()
     config["inv"] = default.get("inv", {}).copy()
     config["props"] = default.get("props", {}).copy()
+    config["prefs"] = default.get("prefs", {}).copy()
     for line in lines:
         prop = ""
         val = ""
@@ -19,7 +25,7 @@ def set_conf(name, text, config):
             continue
         if " set " not in line: 
             print(f"Error: skipping invalid line: {line}\nReason: keyword 'to' not found")
-        if line.startswith(";") : continue
+            continue
         
         prop, rest = line.split(" set ")
         prop = prop.strip()
@@ -54,6 +60,9 @@ def set_conf(name, text, config):
         elif prop == "propmap":
                 if " to "not in line:
                     print(f"Error: 'to' keyword missing. \nline: {line}")
+                if " set " not in line: 
+                    print(f"Error: 'set' keyword missing. \nline: {line}")
+                    continue
                 prop, rest = line.split(" set ")
                 key, val = rest.split(" to ")
                 val = val.strip()
@@ -68,6 +77,10 @@ def set_conf(name, text, config):
                 config["props"][key] = val
         
         else:
-            print(f"Error: in line {line} Keyword '{prop}' not recognized")    
+            print(f"Error: in line {line} Keyword '{prop}' not recognized")  
+    print(f"configPATH type: {type(configPATH)}")
+    print(f"configPATH as string: {str(configPATH)}")
+    save(config, str(configPATH))  
+    print(f"FINAL config before return: {config}")
     save(config, configPATH)
     print("Done! Preferences updated successfully.")

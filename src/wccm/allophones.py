@@ -1,7 +1,7 @@
 from .storage import save, load, config_load
 from .parse import ipa_replace
 c = config_load()
-ipa = c["ipa"]
+ipa = c["ipa"] if not c["ipa"] is None else {}
 #syntax: change i - j
 def changeparse (line, conf):
     ipa = conf["ipa"]

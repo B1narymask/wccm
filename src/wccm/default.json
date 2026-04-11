@@ -38,7 +38,10 @@
     "|": "conjugations",
     "@": "custom",
     ">": "example",
-    "^": "identifier"
+    "^": "identifier",
+    ">$": "example.ipa",
+    ">>": "example.gloss",
+    ">?": "example.meaning"
     },
    "inv":  {
     ".":  "consonant",
