@@ -3,16 +3,16 @@ from pathlib import Path
 
 def set_conf(name, text, config):
     configPATH = Path(__file__).parent / "config.json"
-    print(f"str(configPATH): {str(configPATH)}")
+    #print(f"str(configPATH): {str(configPATH)}")
     if not name.endswith(".pref"):
         print("ERROR: Please use .pref files to edit preferences.")
         return 
     lines = text.splitlines()
     default = load("default.json") #if not load("default.json") is None else {}
 
-    print(f'type(load("default.json")): {type(load("default.json"))}')
-    for i, j in default.items():
-        print(f"{i}: {j}\n")
+   # print(f'type(load("default.json")): {type(load("default.json"))}')
+    #for i, j in default.items():
+    #    print(f"{i}: {j}\n")
     config["ipa"] = default.get("ipa", {}).copy()
     config["inv"] = default.get("inv", {}).copy()
     config["props"] = default.get("props", {}).copy()
@@ -38,7 +38,7 @@ def set_conf(name, text, config):
         elif prop == "ipamap":
             if " to " not in rest: 
                 print(f"Error: 'to' keyword missing. \nline: {line}")
-                print(f"Debug: rest: {rest}, prop: {prop}")
+                #print(f"Debug: rest: {rest}, prop: {prop}")
                 continue
             key, val = rest.split(" to ")
             val = val.strip()
@@ -78,9 +78,9 @@ def set_conf(name, text, config):
         
         else:
             print(f"Error: in line {line} Keyword '{prop}' not recognized")  
-    print(f"configPATH type: {type(configPATH)}")
-    print(f"configPATH as string: {str(configPATH)}")
-    save(config, str(configPATH))  
-    print(f"FINAL config before return: {config}")
+    #print(f"configPATH type: {type(configPATH)}")
+    #print(f"configPATH as string: {str(configPATH)}")
+    #save(config, str(configPATH))  
+    #print(f"FINAL config before return: {config}")
     save(config, configPATH)
     print("Done! Preferences updated successfully.")

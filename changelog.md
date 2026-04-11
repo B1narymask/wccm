@@ -1,7 +1,4 @@
-# v0.6.0, April 11th 2026
-
-## Added
-- `reverse` option for English to conlang output instead of standard conlang to English (`wccm file.wccm output.txt reverse`)
+# v0.6.01, April 11th 2026
 
 ## Fixed
-- Fixed configurations breaking after parsing `.pref` files
+- removed leftover debug prints (whoopsies!)
